@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional developer portfolio showcasing engineering skills, featured projects, and contact information.">
+    
+    <title>Armaan Godara | Software Developer Portfolio</title>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header role="navigation" aria-label="Main Navigation">
+        <div class="logo">AG</div>
+        <button id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#about-me">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about-me">
+            <h2>About Me</h2>
+            <p>
+                Hello! I am a passionate software developer specializing in building clean, optimized, and highly accessible web applications. With a strong foundation in modern programming practices, I focus on engineering smart digital solutions that bridge functional complexity with exceptional user experiences.
+            </p>
+        </section>
+
+        <hr>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            
+            <div class="filter-container">
+                <button class="filter-btn active" data-category="all">All Projects</button>
+                <button class="filter-btn" data-category="backend">Backend / C#</button>
+                <button class="filter-btn" data-category="frontend">Frontend / Web</button>
+            </div>
+            
+            <div class="projects-grid">
+                <article class="project-card" data-category="backend">
+                    <h3>Smart Library Console Application</h3>
+                    <figure class="img-container">
+                        <img class="lightbox-trigger" src="images/library-system.jpg" alt="Screenshot of a C# command-line interface managing book registry allocations and validating borrowing limits.">
+                        <div class="overlay"><span>View Full Image</span></div>
+                    </figure>
+                    <figcaption>Figure 1: Command-line registry flow built with strict data constraints in C#.</figcaption>
+                    <p>
+                        A variable-driven inventory application built in C# to manage book states, implement search lookups, and enforce user validation thresholds safely without standard collections.
+                    </p>
+                </article>
+
+                <article class="project-card" data-category="frontend">
+                    <h3>Accessible Portfolio Site Architecture</h3>
+                    <figure class="img-container">
+                        <img class="lightbox-trigger" src="images/portfolio-preview.jpg" alt="A clean web interface displaying semantic HTML5 structure with dark mode compatibility and high contrast fonts.">
+                        <div class="overlay"><span>View Full Image</span></div>
+                    </figure>
+                    <figcaption>Figure 2: Responsive, semantic portfolio structure optimized for SEO and screen-readers.</figcaption>
+                    <p>
+                        A lightweight, high-performance profile layout engineered explicitly around WCAG contrast requirements and meaningful element hierarchies.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <ul class="skills-list">
+                <li>C# Programming & .NET Architecture</li>
+                <li>Semantic HTML5 & Accessible Web Design (WCAG / ARIA)</li>
+                <li>Algorithmic Optimization & Problem Solving</li>
+                <li>Object-Oriented Software Design</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <form id="contact-form" action="#" method="POST" novalidate>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    <span class="error-message" id="name-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+                    <span class="error-message" id="email-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Write your message details here..." required></textarea>
+                    <span class="error-message" id="message-error"></span>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <div id="lightbox-modal" role="dialog" aria-label="Image preview overlay" aria-hidden="true">
+        <button id="lightbox-close" aria-label="Close image display">&times;</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Armaan Godara. All rights reserved. Crafted with clean semantics and accessibility focus.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

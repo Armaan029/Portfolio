@@ -1,0 +1,447 @@
+/* ==========================================================================
+   1. Global Variables & Base Structural Styles
+   ========================================================================== */
+:root {
+    --bg-primary: #0f0f11;
+    --bg-surface: #17171c;
+    --bg-input: #1f1f26;
+    --text-primary: #f5f5f7;
+    --text-secondary: #94a3b8;
+    --accent-color: #38bdf8;
+    --accent-hover: #7dd3fc;
+    --border-color: #2e2e38;
+    --error-color: #f87171;
+    --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 0 1.5rem;
+    -webkit-font-smoothing: antialiased;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 0;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: var(--border-color);
+    margin: 4rem 0;
+}
+
+/* ==========================================================================
+   2. Header Navigation & Animated Hamburger Icon
+   ========================================================================== */
+header {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    position: relative;
+}
+
+header .logo::after {
+    content: '.';
+    color: var(--accent-color);
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+}
+
+header nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+}
+
+header nav a:hover,
+header nav a:focus {
+    color: var(--accent-color);
+    outline: none;
+}
+
+/* Modern Hamburger Menu styling */
+#menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0.5rem;
+    z-index: 101;
+}
+
+#menu-toggle .bar {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: var(--transition-smooth);
+    border-radius: 2px;
+}
+
+/* ==========================================================================
+   3. Content Sections & Project Filter Layouts
+   ========================================================================== */
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 1.5rem;
+}
+
+#about-me p {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 68ch;
+}
+
+/* Filter Controls Container Layout */
+.filter-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.filter-btn:hover,
+.filter-btn:focus {
+    color: var(--text-primary);
+    border-color: var(--text-secondary);
+    outline: none;
+}
+
+.filter-btn.active {
+    background-color: var(--bg-surface);
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* Project Cards Responsive Grid Structure */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
+
+.project-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    border-color: #3e3e4a;
+}
+
+.project-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Overlay zoom wrapper logic for images */
+.img-container {
+    position: relative;
+    margin: 1.25rem 0 0.5rem 0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.img-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: var(--transition-smooth);
+}
+
+.img-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 15, 17, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.img-container:hover .overlay {
+    opacity: 1;
+}
+
+.img-container:hover img {
+    transform: scale(1.02);
+}
+
+.img-container .overlay span {
+    background-color: rgba(23, 23, 28, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+}
+
+figcaption {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   4. Technical Skills & Forms Custom Elements
+   ========================================================================== */
+.skills-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.skills-list li {
+    font-size: 1.1rem;
+    position: relative;
+    padding-left: 2rem;
+    color: var(--text-secondary);
+}
+
+.skills-list li::before {
+    content: "⚡";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* Form Styling & Validation Layout Adjustments */
+#contact form {
+    background-color: var(--bg-surface);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    max-width: 650px;
+}
+
+.form-group {
+    margin-bottom: 1.75rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.25px;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.85rem;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 6px;
+    transition: var(--transition-smooth);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+/* Dynamic Live Validation Error Text Styling */
+.error-message {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.submit-btn {
+    background-color: var(--accent-color);
+    color: #0f0f11;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.85rem 2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.submit-btn:hover,
+.submit-btn:focus {
+    background-color: var(--accent-hover);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+    outline: none;
+}
+
+/* ==========================================================================
+   5. Interactive Lightbox Modal Styles
+   ========================================================================== */
+#lightbox-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 12, 0.95);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+#lightbox-img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+#lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: var(--transition-smooth);
+}
+
+#lightbox-close:hover {
+    color: var(--accent-color);
+}
+
+/* Footer Section spacing adjustments */
+footer {
+    text-align: center;
+    padding: 4rem 0 2rem 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   6. Media Queries & Responsive Custom Behaviors (768px Window Breakpoint)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    #menu-toggle {
+        display: flex;
+    }
+
+    /* Transform menu drawer window */
+    header nav {
+        position: absolute;
+        top: 100%;
+        left: -1.5rem;
+        right: -1.5rem;
+        background-color: var(--bg-surface);
+        border-bottom: 1px solid var(--border-color);
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        z-index: 100;
+        transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Target state when user toggles menu class */
+    header nav.active {
+        max-height: 300px;
+        padding: 2rem 1.5rem;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    /* Hamburger animation states managed by script trigger updates */
+    #menu-toggle[aria-expanded="true"] .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    #menu-toggle[aria-expanded="true"] .bar:nth-child(2) {
+        opacity: 0;
+    }
+    #menu-toggle[aria-expanded="true"] .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .projects-grid, .skills-list {
+        grid-template-columns: 1fr;
+    }
+    
+    #contact form {
+        padding: 1.5rem;
+    }
+}
